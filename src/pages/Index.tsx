@@ -58,29 +58,42 @@ const Index: React.FC = () => {
             Your AI Coding & Problem Solving Assistant
           </p>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons + Quote */}
           <div 
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in"
+            className="flex flex-col items-center justify-center gap-4 animate-fade-in"
             style={{ animationDelay: '0.4s' }}
           >
-            <Link to="/login">
-              <Button 
-                size="lg" 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg rounded-xl shadow-glow hover:shadow-glow-lg transition-all duration-300 group"
-              >
-                Get Started
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-            <Link to="/chat">
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="glass border-glass-border/50 hover:border-primary/50 px-8 py-6 text-lg rounded-xl hover:shadow-glow transition-all duration-300"
-              >
-                Try Demo
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link to="/login">
+                <Button 
+                  size="lg" 
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg rounded-xl shadow-glow hover:shadow-glow-lg transition-all duration-300 group"
+                >
+                  Get Started
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+
+              <Link to="/chat">
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="glass border-glass-border/50 hover:border-primary/50 px-8 py-6 text-lg rounded-xl hover:shadow-glow transition-all duration-300"
+                >
+                  Try Demo
+                </Button>
+              </Link>
+            </div>
+
+            {/* Glowing Quote */}
+            <p 
+              className="mt-4 text-lg md:text-xl lg:text-xl italic tracking-wide animate-fade-in"
+              style={{ animationDelay: '0.5s' }}
+            >
+              <span className="glow-text text-glow">
+                “Dreams are only wishes without discipline.”
+              </span>
+            </p>
           </div>
         </div>
 
@@ -138,7 +151,7 @@ const Index: React.FC = () => {
       <footer className="py-8 px-6 border-t border-glass-border/20">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-muted-foreground text-sm">
-            © 2024 ZOE. Built by Sanjay M
+            © 2026 ZOE. Built by Sanjay M
           </p>
         </div>
       </footer>
