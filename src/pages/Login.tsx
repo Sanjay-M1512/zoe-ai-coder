@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import BackgroundGlow from '@/components/BackgroundGlow';
-import { Sparkles, Mail, Lock, AlertCircle, ArrowLeft } from 'lucide-react';
+import { Mail, Lock, AlertCircle, ArrowLeft } from 'lucide-react';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -61,7 +61,11 @@ const Login: React.FC = () => {
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-4 shadow-glow">
-            <Sparkles className="w-8 h-8 text-primary" />
+            <img
+              src="/logo.png"
+              alt="ZOE Logo"
+              className="h-10 w-10 object-contain"
+            />
           </div>
           <h1 className="text-3xl font-bold glow-text mb-2">Welcome back</h1>
           <p className="text-muted-foreground">Sign in to continue to ZOE</p>

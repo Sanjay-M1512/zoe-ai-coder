@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { LogOut, User, Sparkles } from 'lucide-react';
+import { LogOut, User } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const { isAuthenticated, user, logout } = useAuth();
@@ -19,11 +19,13 @@ const Navbar: React.FC = () => {
         {/* Logo */}
         <Link 
           to="/" 
-          className="flex items-center gap-2 group"
+          className="flex items-center gap-3 group"
         >
-          <div className="relative">
-            <Sparkles className="w-6 h-6 text-primary group-hover:animate-pulse-glow transition-all" />
-          </div>
+          <img
+            src="/logo.png"
+            alt="ZOE Logo"
+            className="h-8 w-8 object-contain group-hover:scale-105 transition-transform"
+          />
           <span className="text-xl font-semibold glow-text">ZOE</span>
         </Link>
 

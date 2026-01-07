@@ -4,7 +4,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import BackgroundGlow from '@/components/BackgroundGlow';
 import ChatMessage from '@/components/ChatMessage';
 import ChatInput from '@/components/ChatInput';
-import { Sparkles, User, LogOut, Home } from 'lucide-react';
+import { User, LogOut, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface Message {
@@ -27,6 +27,21 @@ const Chat: React.FC = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isLoading]);
+
+  // ===============================
+  // RANDOM GREETING USING USERNAME
+  // ===============================
+  const greetings = user?.username
+    ? [
+        `Hi ${user.username}, how can I help you today?`,
+        `Hello ${user.username}! What can I do for you?`,
+        `Hey ${user.username}  Ready to code?`,
+        `Welcome back, ${user.username}. What are we building today?`,
+      ]
+    : ['How can I help you today?'];
+
+  const randomGreeting =
+    greetings[Math.floor(Math.random() * greetings.length)];
 
   const sendMessage = async (prompt: string) => {
     const userMessage: Message = {
@@ -81,7 +96,11 @@ const Chat: React.FC = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 px-2 py-3 mb-6">
           <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center shadow-glow">
-            <Sparkles className="w-5 h-5 text-primary" />
+            <img
+              src="/logo.png"
+              alt="ZOE Logo"
+              className="h-6 w-6 object-contain"
+            />
           </div>
           <span className="text-xl font-semibold glow-text hidden md:block">ZOE</span>
         </Link>
@@ -108,8 +127,12 @@ const Chat: React.FC = () => {
                 <User className="w-4 h-4 text-primary" />
               </div>
               <div className="hidden md:block overflow-hidden">
-                <p className="text-sm font-medium text-foreground truncate">{user.username}</p>
-                <p className="text-xs text-muted-foreground truncate">{user.email}</p>
+                <p className="text-sm font-medium text-foreground truncate">
+                  {user.username}
+                </p>
+                <p className="text-xs text-muted-foreground truncate">
+                  {user.email}
+                </p>
               </div>
             </button>
           )}
@@ -131,7 +154,9 @@ const Chat: React.FC = () => {
         <header className="glass-strong border-b border-glass-border/30 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
           <div>
             <h1 className="text-lg font-semibold text-foreground">Chat with ZOE</h1>
-            <p className="text-sm text-muted-foreground">Your AI coding assistant</p>
+            <p className="text-sm text-muted-foreground">
+              Your AI coding assistant{user?.username ? `, ${user.username}` : ''}
+            </p>
           </div>
           {!isAuthenticated && (
             <Link to="/login">
@@ -147,13 +172,19 @@ const Chat: React.FC = () => {
           {messages.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center animate-fade-in">
               <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 shadow-glow">
-                <Sparkles className="w-10 h-10 text-primary" />
+                <img
+                  src="/logo.png"
+                  alt="ZOE Logo"
+                  className="h-10 w-10 object-contain"
+                />
               </div>
-              <h2 className="text-2xl font-semibold mb-2 glow-text">How can I help you today?</h2>
+              <h2 className="text-2xl font-semibold mb-2 glow-text">
+                {randomGreeting}
+              </h2>
               <p className="text-muted-foreground max-w-md">
                 Ask me anything about coding, debugging, algorithms, or best practices.
               </p>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-8 max-w-2xl w-full">
                 {[
                   'Fix this Python error...',
@@ -215,7 +246,9 @@ const Chat: React.FC = () => {
               <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
                 <User className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold text-foreground mb-1">{user.username}</h3>
+              <h3 className="text-xl font-semibold text-foreground mb-1">
+                {user.username}
+              </h3>
               <p className="text-muted-foreground text-sm">{user.email}</p>
             </div>
             <Button
